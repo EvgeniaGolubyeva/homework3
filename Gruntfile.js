@@ -290,7 +290,7 @@ module.exports = function (grunt) {
             'data/**/*'
           ]
         },
-        // fixing of missing font and images in production
+        // fix for missing font and images in production
         // https://github.com/yeoman/generator-webapp/issues/24, last post
         {
             expand:true,
