@@ -1,5 +1,6 @@
 'use strict';
 
+//stil not clear return after unit 4
 function sliderDirective($timeout: ng.ITimeoutService): ng.IDirective {
     return {
         scope: false,
@@ -17,4 +18,4 @@ function sliderDirective($timeout: ng.ITimeoutService): ng.IDirective {
     }
 }
 
-angular.module("auction").directive('slider', ["$timeout", sliderDirective]);
+angular.module("auction").directive('auctionSlider', ["$timeout", sliderDirective]);

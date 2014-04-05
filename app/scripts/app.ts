@@ -37,5 +37,6 @@ auctionApplication.config(['$routeProvider', ($routeProvider: ng.route.IRoutePro
 
 //assign title to current scope
 auctionApplication.run(["$rootScope", ($rootScope: IRootScope) => {
-    $rootScope.$on("$routeChangeStart", (event: ng.IAngularEvent, ...args: any[]): any => $rootScope.title = args[0].title);
+    $rootScope.$on("$routeChangeStart",
+        (event: ng.IAngularEvent, ...args: any[]): any => $rootScope.title = args[0].title);
 }]);

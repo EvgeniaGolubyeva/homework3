@@ -290,20 +290,20 @@ module.exports = function (grunt) {
             'data/**/*'
           ]
         },
-            {
-                expand:true,
-                flatten:true,
-                src: '<%= yeoman.app %>/bower_components/jqueryui/themes/smoothness/images/*',
-                dest: '<%= yeoman.dist %>/styles/images/'
-            },
-            // fixing of missing font and images in production
-            // https://github.com/yeoman/generator-webapp/issues/24 last post
-            {
-                expand:true,
-                flatten:true,
-                src: '<%= yeoman.app %>/bower_components/bootstrap/dist/fonts/*',
-                dest: '<%= yeoman.dist %>/fonts/'
-            },
+        // fixing of missing font and images in production
+        // https://github.com/yeoman/generator-webapp/issues/24, last post
+        {
+            expand:true,
+            flatten:true,
+            src: '<%= yeoman.app %>/bower_components/jqueryui/themes/smoothness/images/*',
+            dest: '<%= yeoman.dist %>/styles/images/'
+        },
+        {
+            expand:true,
+            flatten:true,
+            src: '<%= yeoman.app %>/bower_components/bootstrap/dist/fonts/*',
+            dest: '<%= yeoman.dist %>/fonts/'
+        },
         {
           expand: true,
           cwd: '.tmp/images',
