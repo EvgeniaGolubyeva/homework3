@@ -2,7 +2,7 @@
 
 //stil not clear return after unit 4
 function sliderDirective($timeout: ng.ITimeoutService): ng.IDirective {
-    return {
+    return <ng.IDirective> {
         scope: false,
         restrict: 'A',
         link: (scope, element, attrs) => {

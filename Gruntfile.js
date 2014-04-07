@@ -135,7 +135,7 @@ module.exports = function (grunt) {
     less: {
       dist: {
         options: {
-          paths: ['<%= yeoman.app %>/bower_componenwatch'],
+          paths: ['<%= yeoman.app %>/bower_component'],
           cleancss: true
         },
         files: [{
@@ -304,6 +304,7 @@ module.exports = function (grunt) {
             src: '<%= yeoman.app %>/bower_components/bootstrap/dist/fonts/*',
             dest: '<%= yeoman.dist %>/fonts/'
         },
+        ///////
         {
           expand: true,
           cwd: '.tmp/images',

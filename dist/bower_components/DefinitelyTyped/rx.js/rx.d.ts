@@ -1,10 +1,10 @@
-﻿// Type definitions for RxJS v2.2.17
+﻿// Type definitions for RxJS v2.2.18
 // Project: http://rx.codeplex.com/
 // Definitions by: gsino <http://www.codeplex.com/site/users/view/gsino>
 // Definitions by: Igor Oleinikov <https://github.com/Igorbek>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
-///<reference path="rx-lite.ts"/>
+///<reference path="rx-lite.d.ts"/>
 
 declare module Rx {
 	export interface IScheduler {

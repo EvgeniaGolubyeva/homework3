@@ -252,10 +252,11 @@ declare module "http" {
     import stream = require("stream");
 
     export interface Server extends NodeEventEmitter {
-        listen(port: number, hostname?: string, backlog?: number, callback?: Function): void;
-        listen(path: string, callback?: Function): void;
-        listen(handle: any, listeningListener?: Function): void;
-        close(cb?: any): void;
+        listen(port: number, hostname?: string, backlog?: number, callback?: Function): Server;
+        listen(path: string, callback?: Function): Server;
+        listen(handle: any, listeningListener?: Function): Server;
+        close(cb?: any): Server;
+        address(): { port: number; family: string; address: string; };
         maxHeadersCount: number;
     }
     export interface ServerRequest extends NodeEventEmitter, ReadableStream {
@@ -633,6 +634,8 @@ declare module "url" {
         search: string;
         query: string;
         slashes: boolean;
+        hash?: string;
+        path?: string;
     }
 
     export interface UrlOptions {
@@ -644,6 +647,8 @@ declare module "url" {
         pathname?: string;
         search?: string;
         query?: any;
+        hash?: string;
+        path?: string;
     }
 
     export function parse(urlStr: string, parseQueryString?: boolean , slashesDenoteHost?: boolean ): Url;
@@ -707,10 +712,10 @@ declare module "net" {
     };
 
     export interface Server extends Socket {
-        listen(port: number, host?: string, backlog?: number, listeningListener?: Function): void;
-        listen(path: string, listeningListener?: Function): void;
-        listen(handle: any, listeningListener?: Function): void;
-        close(callback?: Function): void;
+        listen(port: number, host?: string, backlog?: number, listeningListener?: Function): Server;
+        listen(path: string, listeningListener?: Function): Server;
+        listen(handle: any, listeningListener?: Function): Server;
+        close(callback?: Function): Server;
         address(): { port: number; family: string; address: string; };
         maxConnections: number;
         connections: number;
@@ -819,7 +824,7 @@ declare module "fs" {
     export function readlinkSync(path: string): string;
     export function realpath(path: string, callback?: (err: ErrnoException, resolvedPath: string) => any): void;
     export function realpath(path: string, cache: {[path: string]: string}, callback: (err: ErrnoException, resolvedPath: string) =>any): void;
-    export function realpathSync(path: string, cache?: {[path: string]: string}): void;
+    export function realpathSync(path: string, cache?: {[path: string]: string}): string;
     export function unlink(path: string, callback?: (err?: ErrnoException) => void): void;
     export function unlinkSync(path: string): void;
     export function rmdir(path: string, callback?: (err?: ErrnoException) => void): void;
@@ -953,12 +958,12 @@ declare module "tls" {
 
     export interface Server extends net.Server {
         // Extended base methods
-        listen(port: number, host?: string, backlog?: number, listeningListener?: Function): void;
-        listen(path: string, listeningListener?: Function): void;
-        listen(handle: any, listeningListener?: Function): void;
+        listen(port: number, host?: string, backlog?: number, listeningListener?: Function): Server;
+        listen(path: string, listeningListener?: Function): Server;
+        listen(handle: any, listeningListener?: Function): Server;
 
-        listen(port: number, host?: string, callback?: Function): void;
-        close(): void;
+        listen(port: number, host?: string, callback?: Function): Server;
+        close(): Server;
         address(): { port: number; family: string; address: string; };
         addContext(hostName: string, credentials: {
             key: string;
@@ -1017,8 +1022,8 @@ declare module "crypto" {
         digest(encoding?: string): string;
     }
     interface Hmac {
-        update(data: any): void;
-        digest(encoding?: string): void;
+        update(data: any, input_encoding?: string): Hmac;
+        digest(encoding?: string): string;
     }
     export function createCipher(algorithm: string, password: any): Cipher;
     export function createCipheriv(algorithm: string, key: any, iv: any): Cipher;

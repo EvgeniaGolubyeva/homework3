@@ -6,6 +6,9 @@ import events = require("events");
 import zlib = require("zlib");
 import url = require('url');
 import util = require("util");
+import crypto = require("crypto");
+import http = require("http");
+import net = require("net");
 
 assert(1 + 1 - 2 === 0, "The universe isn't how it should.");
 
@@ -80,3 +83,15 @@ function stream_readable_pipe_test() {
     var w = fs.createWriteStream('file.txt.gz');
     r.pipe(z).pipe(w);
 }
+
+////////////////////////////////////////////////////
+/// Crypto tests : http://nodejs.org/api/crypto.html
+////////////////////////////////////////////////////
+
+var hmacResult: string = crypto.createHmac('md5', 'hello').update('world').digest('hex');
+
+////////////////////////////////////////////////////
+
+// Make sure .listen() and .close() retuern a Server instance
+http.createServer().listen(0).close().address();
+net.createServer().listen(0).close().address();
