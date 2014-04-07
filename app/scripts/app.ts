@@ -13,10 +13,10 @@ var auctionApplication = angular.module('auction', ['ngRoute']);
 auctionApplication.config(['$routeProvider', ($routeProvider: ng.route.IRouteProvider) => {
     $routeProvider
         .when ('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeController',
-        title: 'Home',
-        resolve: HomeController.resolve
+            templateUrl: 'views/home.html',
+            controller: 'HomeController',
+            title: 'Home',
+            resolve: HomeController.resolve
         })
         .when('/search', {
             templateUrl: 'views/search.html',

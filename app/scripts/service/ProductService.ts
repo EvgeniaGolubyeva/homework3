@@ -34,7 +34,6 @@ module auction.service {
         getSearchProducts   = (): ng.IPromise<m.Product[]> => this.getDataFromJSON(this.SEARCH_PRODUCTS_FILE);
 
         getProduct = (id: number): ng.IPromise<m.Product> => {
-            var e = this.$q.defer();
             return this.$q.all([this.getFeaturedProducts(), this.getSearchProducts()]).then(
                 (products) => {
                     var combined = products[0].concat(products[1]);
@@ -43,7 +42,7 @@ module auction.service {
                         return p.id == id
                     });
 
-                    return found.length == 1? found[0] : this.$q.reject("Single product with specified id is not found");
+                    return found.length == 1 ? found[0] : this.$q.reject("Single product with specified id is not found");
                 },
                 (reason) => {
                     return this.$q.reject(reason);
